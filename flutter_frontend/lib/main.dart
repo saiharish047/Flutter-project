@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -56,10 +59,22 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: onPressed,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<void> onPressed() async {
+    var uri = Uri.parse('http://192.168.29.13:3000/message');
+    //await http.post(uri);
+
+    http.Response response = await http.post(uri,
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode({
+          'data': jsonEncode({'There': 'How'})
+        }));
+    print(response.body);
   }
 }

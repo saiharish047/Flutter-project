@@ -1,13 +1,16 @@
 const express = require('express');
-
+const fs = require("fs");
 const app = express();
-
-let messageJson = {message:'hello folks'};
-
 app.use(express.json());
 
+app.post('/message',(req,res)=>{
+    console.log(req.body);
+    fs.appendFile(__dirname+"/storage/messages.json", req.body['data']);
+    res.send('Updated successfully');
+});
+
 app.get('/message',(req,res)=> {
-    res.send(messageJson);
+    res.send(fs.readFileSync(__dirname+"/storage/messages.json"));
 });
 
 app.listen(3000,()=>{
