@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:wifi_iot/wifi_iot.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    String _ipAddress = '';
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -55,6 +57,22 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+             FloatingActionButton(
+        onPressed: ()async{
+          _ipAddress = await getIPAddress() ?? '';
+          print(_ipAddress);
+          setState(() {
+            
+          });
+        },
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
+      
+            Text(
+              _ipAddress,
+              style: Theme.of(context).textTheme.headline4,
+            ),
           ],
         ),
       ),
@@ -64,6 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<String?> getIPAddress()async{
+    return await WiFiForIoTPlugin.getIP();
   }
 
   //a post request sent to the node server
