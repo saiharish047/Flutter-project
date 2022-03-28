@@ -59,22 +59,37 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: onPressed,
+        onPressed: postRequest,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  Future<void> onPressed() async {
+  //a post request sent to the node server
+  Future<void> postRequest() async {
     var uri = Uri.parse('http://192.168.29.13:3000/message');
     //await http.post(uri);
 
-    http.Response response = await http.post(uri,
-        headers: {"Content-Type": "application/json"},
-        body: jsonEncode({
-          'data': jsonEncode({'There': 'How'})
-        }));
-    print(response.body);
+    http.Response response = await http.post(
+      uri,
+      //content type can be text/plain,application/json depending on what we are using.
+      //If we use application/json, we have to have a body-parser in our server for handling json request body.
+      //Can be set up using app.use(express.json()) in our nodejs server code
+      headers: {"Content-Type": "text/plain"},
+      body: jsonEncode(
+        {'When': 'Where'},
+      ),
+    );
+  }
+
+//a get request sent to the node server
+  Future<void> getRequest() async {
+    var uri = Uri.parse('http://192.168.29.13:3000/message');
+    //await http.post(uri);
+
+    http.Response response = await http.post(
+      uri,
+    );
   }
 }
