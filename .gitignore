@@ -49,3 +49,4 @@ app.*.map.json
 **/node_modules
 **/pubspec.lock
 .packages
+**/build/
