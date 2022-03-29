@@ -44,3 +44,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+#project related
+node_modules
+pubspec.lock
+build/
+.dart_tool/
+.packages
