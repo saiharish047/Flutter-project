@@ -32,12 +32,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,10 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
 //a get request sent to the node server
   Future<void> getRequest() async {
     var uri = Uri.parse('http://192.168.29.13:3000/message');
-    //await http.post(uri);
-
-    http.Response response = await http.post(
+    http.Response response = await http.get(
       uri,
     );
+    print(response);
   }
 }
