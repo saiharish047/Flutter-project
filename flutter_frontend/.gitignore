@@ -46,8 +46,6 @@ app.*.map.json
 /android/app/release
 
 #project related
-node_modules
-pubspec.lock
-build/
-.dart_tool/
+**/node_modules
+**/pubspec.lock
 .packages
