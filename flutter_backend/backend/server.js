@@ -46,6 +46,12 @@ app.get('/message',(req,res)=> {
     res.send(fs.readFileSync(__dirname+"/storage/messages.json"));
 });
 
+//we can define multiple gets for a code
+//app.get('/posts',(req,res)=> {
+//    res.send(fs.readFileSync(__dirname+"/storage/messages.json"));
+//});
+
+
 //Specifies the port number which the server will listen to
 app.listen(3000,()=>{
     console.log('runnning...');
