@@ -47,6 +47,7 @@ app.*.map.json
 
 #project related
 **/node_modules
+**/.env
 **/pubspec.lock
 .packages
 **/build/
