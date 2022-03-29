@@ -85,4 +85,16 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     print(response);
   }
+
+  Future<void> getGraphQLRequest() async {
+    var url = Uri.http('192.168.29.13:4000', '/graphql', {
+      "query": '''{
+        message
+        }''',
+    });
+    http.Response response = await http.get(
+      url,
+    );
+    print(response.body);
+  }
 }
