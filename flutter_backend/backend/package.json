@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon mongoDB_server.js"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,8 @@
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
+    "dotenv": "^16.0.0",
+    "mongoose": "^6.2.9",
     "nodemon": "^2.0.15"
   }
 }
