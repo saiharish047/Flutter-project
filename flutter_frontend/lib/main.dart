@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: postRequest,
+        onPressed: addCourse,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
@@ -86,15 +86,47 @@ class _MyHomePageState extends State<MyHomePage> {
     print(response);
   }
 
-  Future<void> getGraphQLRequest() async {
+  //graphql get request sent to graphql_server
+  Future<void> getCourseById() async {
+    int courseID = 123;
     var url = Uri.http('192.168.29.13:4000', '/graphql', {
       "query": '''{
-        message
+        getCourse(id:$courseID){id,title,description}
         }''',
     });
     http.Response response = await http.get(
       url,
     );
+    print(response.body);
+  }
+
+  //graphql get request sent to graphql_server
+  Future<void> getAllCourses() async {
+    var url = Uri.http('192.168.29.13:4000', '/graphql', {
+      "query": '''{
+        getAllCourses{id,title,description}
+      }'''
+    });
+
+    http.Response response = await http.get(url);
+    print(response.body);
+  }
+
+  //post request to graphql_server
+  Future<void> addCourse() async {
+    var id = 1000;
+    var title = 'Chemistry';
+    var description = 'Very interesting subject';
+    var url = Uri.http(
+      '192.168.29.13:4000',
+      '/graphql',
+      {
+        "query": '''mutation {
+          addCourse(id:$id,title:"$title",description:"$description")
+          }''',
+      },
+    );
+    http.Response response = await http.post(url);
     print(response.body);
   }
 }
