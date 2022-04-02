@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/homepage/twitter_home_page.dart';
+import 'package:flutter_application_1/homepage/view/home_page_view.dart';
+import 'package:flutter_application_1/widgets/twitter_home_page.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const TwitterHomePage(),
+      home: const HomeView(),
     );
   }
 }
