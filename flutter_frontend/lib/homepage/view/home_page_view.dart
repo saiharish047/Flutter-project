@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/base_classes/view/base_view.dart';
 import 'package:flutter_application_1/homepage/viewmodel/home_page_view_model.dart';
+import 'package:flutter_application_1/widgets/home_page/twitter_home_page.dart';
+import 'package:flutter_application_1/widgets/search_bar/search_bar_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -13,20 +15,15 @@ class HomeView extends StatelessWidget {
       setupViewModel: (viewModel) => viewModel.initialize(),
       builder: (context, viewModel, child) {
         return Scaffold(
-          body: Column(
-            children: [
-              const SizedBox(height: 100),
-              Text(viewModel.getText()),
-              ElevatedButton(
-                onPressed: viewModel.onTap,
-                child: const Text('Press here'),
+          backgroundColor: Colors.black,
+          body: TwitterHomePageBaseWidget(
+            attributes: TwitterHomePageBaseWidgetAttributes(
+              weetList: viewModel.getTweetList(),
+              searchBarAttributes: SearchBarWidgetAttributes(
+                hintText: 'Search',
+                onChanged: viewModel.onSearchTextChanged,
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    viewModel.navigate(context);
-                  },
-                  child: Text('Navigate'))
-            ],
+            ),
           ),
         );
       },

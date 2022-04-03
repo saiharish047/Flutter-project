@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/base_classes/view_model/base_view_model.dart';
-import 'package:flutter_application_1/signup/view/signup_view.dart';
+import 'package:flutter_application_1/homepage/data_provider/home_page_data_provider.dart';
+import 'package:flutter_application_1/homepage/model/weet_model.dart';
 
 class HomePageViewModel extends BaseViewModel {
-  late String _text;
+  final _dataProvider = HomePageDataProvider();
+  late List<WeetModel> _fullWeetList;
+  late List<WeetModel> _weetList;
 
   HomePageViewModel() : super();
   void initialize() {
-    _text = 'Hello';
+    _fullWeetList = _dataProvider.getTweets();
+    _weetList = _fullWeetList;
   }
 
-  String getText() {
-    return _text;
+  List<WeetModel> getTweetList() {
+    return _weetList;
   }
 
-  void onTap() {
-    _text = 'Pressed';
+  void onSearchTextChanged(String value) {
+    if (value == '') {
+      _weetList = _fullWeetList;
+    }
+
+    var list = <WeetModel>[];
+    _fullWeetList.forEach((weet) {
+      if (weet.title.toLowerCase().contains(value.toLowerCase())) {
+        list.add(weet);
+      }
+    });
+    _weetList = list;
+
     notifyListeners();
-  }
-
-  void navigate(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignupView()));
   }
 }
