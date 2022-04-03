@@ -15,15 +15,15 @@ class SignupView extends StatelessWidget {
       viewModel: _viewModel,
       builder: (context, viewModel, child) {
         return Scaffold(
-          appBar: AppBar(
-            
-          ),
+          appBar: AppBar(),
           body: SignUpPage(
             attributes: SignUpPageAttributes(
               showButton: _viewModel.hasEnteredAllData(),
               onEmailIDNameChanged: viewModel.onEmailId, 
               onUserNameChanged: viewModel.onUserNameChanged,
-              onDobChanged: viewModel.enteredDob,          
+              onDobChanged: viewModel.enteredDob, 
+              showErrorForPassword: viewModel.checkAllConditionsForPassword(), 
+              showErrorConfirmPassword: viewModel.checkPasswords(),
             ),
           ),
         );

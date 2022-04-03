@@ -13,11 +13,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String _userName = '';
-  String _userEmail = '';
-  String birthDateInString = '';
-  DateTime? birthDate;
-  bool isDateSelected = false;  
+  String _password = '';
   
 
   @override
@@ -26,12 +22,17 @@ class _SignUpPageState extends State<SignUpPage> {
       padding: const EdgeInsets.all(8.0),
       child: ListView(
         children: [
+          SizedBox(height: 10,),
           _userEmailIdTextField(),
-          SizedBox(), 
+          SizedBox(height: 10,), 
           _userNameTextField(),
-          SizedBox(),
+          SizedBox(height: 10,),
           DateOfBirthTextField(attributes: DateWithTextFieldAttributes(onDobChanged:widget.attributes.onDobChanged)),
-          SizedBox(),      
+          SizedBox(height: 10,),
+          _enterPassword(),
+          SizedBox(height: 10,),
+          _confirmPassword(),
+          SizedBox(height: 10,),      
           widget.attributes.showButton == true ? _bottomButton() : Container(),
         ],
       ),
@@ -60,6 +61,49 @@ class _SignUpPageState extends State<SignUpPage> {
       onChanged: widget.attributes.onUserNameChanged,
     );
   }
+
+  Widget _enterPassword(){
+    TextEditingController _controller = TextEditingController();
+    return TextField(
+      controller: _controller,
+      obscureText: true,
+      obscuringCharacter: '*',
+      decoration:InputDecoration(
+        label: const Text('Enter Password'),
+        border: const OutlineInputBorder(),
+        
+        errorBorder: const OutlineInputBorder(
+            borderSide:  BorderSide(color: Colors.white, width: 0.0),
+        ),
+      ),
+      keyboardType: TextInputType.name,
+      onChanged:(password) {
+        widget.attributes.onUserNameChanged(password);
+        setState(() {
+          _password = password;
+        });
+      }
+      ,
+    );
+  }
+
+
+  Widget _confirmPassword(){
+    return TextField(
+      obscuringCharacter: '*',
+      obscureText: true,
+      decoration: InputDecoration(
+        label: const Text('Confirm Password'),
+        border: const OutlineInputBorder(),
+        errorBorder:  const OutlineInputBorder(
+            borderSide:  BorderSide(color: Colors.white, width: 0.0),
+        ),
+      ),
+      keyboardType: TextInputType.name,
+      onChanged: widget.attributes.onUserNameChanged,
+    );
+  }
+
 
 
 

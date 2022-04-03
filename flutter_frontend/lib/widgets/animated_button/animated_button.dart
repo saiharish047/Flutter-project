@@ -46,6 +46,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
     return GestureDetector(
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
+      onTap: (){},
       child: Transform.scale(
         scale: _scale,
         child: _animatedButtonUI,
