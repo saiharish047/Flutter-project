@@ -7,7 +7,6 @@ class HomePageViewModel extends BaseViewModel {
 
   HomePageViewModel() : super();
   void initialize() {
-    _text = 'Hello';
   }
 
   String getText() {
