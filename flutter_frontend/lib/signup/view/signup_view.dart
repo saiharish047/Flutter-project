@@ -19,7 +19,12 @@ class SignupView extends StatelessWidget {
             
           ),
           body: SignUpPage(
-            attributes: SignUpPageAttributes(),
+            attributes: SignUpPageAttributes(
+              showButton: _viewModel.hasEnteredAllData(),
+              onEmailIDNameChanged: viewModel.onEmailId, 
+              onUserNameChanged: viewModel.onUserNameChanged,
+              onDobChanged: viewModel.enteredDob,          
+            ),
           ),
         );
       },

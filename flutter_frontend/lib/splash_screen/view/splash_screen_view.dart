@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future navigateToHomeScreen()async{
-    return Future.delayed(const Duration(milliseconds: 1500),(){
+    return Future.delayed(const Duration(milliseconds: 3000),(){
       Navigator.pushReplacement(context, 
       MaterialPageRoute(builder:(context)=>const SignupView()));
     });
@@ -32,15 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
       setupViewModel: (viewModel) => viewModel.initialize(),
       builder: (context,viewModel,child) {
         return Scaffold(
+          backgroundColor: const Color.fromRGBO(0x13, 0x29, 0x4B, 1),
           body: Center(
-            child: Column(
-              children: [
-                const Text("Enjinia",style: TextStyle(
-                  fontWeight:FontWeight.bold,
-                ),),
-                Image.asset('',height: 200,width: 200,)
-              ],
-            ),
+            child: Image.asset('assets/images/splash_screen_loader.gif',height: 400,width: 400,colorBlendMode: BlendMode.clear,),
           ),
         );
       },
