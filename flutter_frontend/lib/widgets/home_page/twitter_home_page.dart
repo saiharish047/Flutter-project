@@ -24,54 +24,53 @@ class TwitterHomePageBaseWidget extends StatefulWidget {
 class _TwitterHomePageBaseWidgetState extends State<TwitterHomePageBaseWidget> {
   @override
   Widget build(BuildContext context) {
-    // return Column(
-    //   mainAxisSize: MainAxisSize.max,
-    //   children: [
-    //     const SizedBox(
-    //       height: 60,
-    //     ),
-    //     SearchBarWidget(
-    //       attributes: widget.attributes.searchBarAttributes,
-    //     ),
-    return LayoutBuilder(
-      builder: (context, viewportConstraints) => Column(children: [
+    return Container(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      height: MediaQuery.of(context).size.height,
+      child: Column(children: [
         const SizedBox(
-          height: 60,
+          height: 20,
         ),
         SearchBarWidget(
           attributes: widget.attributes.searchBarAttributes,
         ),
         const SizedBox(height: 30),
-        ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: viewportConstraints.maxHeight - 160,
-          ),
+        Flexible(
+          flex: 1,
           child: SingleChildScrollView(
             child: Column(
-                children: [_getTweetList(widget.attributes.weetList), _getInstaList(widget.attributes.weetList)]),
+              children: [
+                _getTweetList(widget.attributes.weetList),
+                _getInstaList(widget.attributes.weetList),
+              ],
+            ),
           ),
-        )
+        ),
       ]),
     );
   }
 
   Widget _getInstaList(List<WeetModel> weets) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: weets
-            .map((e) => Container(
-                  height: MediaQuery.of(context).size.height / 4,
-                  width: MediaQuery.of(context).size.width - 40,
-                  child: Card(
-                    child: ListTile(
-                      title: Text(e.title),
-                      subtitle: Text(e.likes.toString()),
-                      trailing: Image.network('https://pbs.twimg.com/media/FPV1kgHVQAIkUoW?format=jpg&name=120x120'),
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          //mainAxisSize: MainAxisSize.min,
+          children: weets
+              .map((e) => SizedBox(
+                    height: MediaQuery.of(context).size.height / 4,
+                    width: MediaQuery.of(context).size.width - 80,
+                    child: Card(
+                      child: ListTile(
+                        title: Text(e.title),
+                        subtitle: Text(e.likes.toString()),
+                        trailing: Image.network('https://pbs.twimg.com/media/FPV1kgHVQAIkUoW?format=jpg&name=120x120'),
+                      ),
                     ),
-                  ),
-                ))
-            .toList(),
+                  ))
+              .toList(),
+        ),
       ),
     );
   }

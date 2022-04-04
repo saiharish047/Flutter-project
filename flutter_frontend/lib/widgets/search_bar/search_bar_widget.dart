@@ -23,13 +23,13 @@ class SearchBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.grey),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30), color: Colors.white),
       child: Row(
         children: [
           Container(
             padding: attributes.contentPadding,
             height: 40,
-            width: MediaQuery.of(context).size.width - 50,
+            width: MediaQuery.of(context).size.width - 100,
             child: Center(
               child: TextFormField(
                 onChanged: attributes.onChanged,
